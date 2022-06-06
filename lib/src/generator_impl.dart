@@ -186,15 +186,22 @@ class _GeneratorImpl implements Generator {
   @override
   List<int> getStyles(PosStyles styles, {bool isKanji = false}) {
     final List<int> bytes = <int>[];
-    if (styles.align != _styles.align) {
-      bytes.addAll(
-        latin1.encode(
-          styles.align == PosAlign.left
-              ? cAlignLeft
-              : (styles.align == PosAlign.center ? cAlignCenter : cAlignRight),
-        ),
-      );
-    }
+    // if (styles.align != _styles.align) {
+    //   bytes.addAll(
+    //     latin1.encode(
+    //       styles.align == PosAlign.left
+    //           ? cAlignLeft
+    //           : (styles.align == PosAlign.center ? cAlignCenter : cAlignRight),
+    //     ),
+    //   );
+    // }
+    bytes.addAll(
+      latin1.encode(
+        styles.align == PosAlign.left
+            ? cAlignLeft
+            : (styles.align == PosAlign.center ? cAlignCenter : cAlignRight),
+      ),
+    );
 
     if (styles.bold != _styles.bold) {
       bytes.addAll(styles.bold ? cBoldOn.codeUnits : cBoldOff.codeUnits);
